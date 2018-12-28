@@ -53,13 +53,43 @@ namespace core101.Controllers
 
             return Ok(response);
         }
-
-
+        
         // GET api/values/toupper/imen
         [HttpGet("toupper/{nom}")]
         public ActionResult<string> ToUpper(string nom)
         {
             return nom.ToUpper();
         }
+
+        // GET api/values/calcules/calculeScientifique/8
+        [HttpGet("calcules/calculeScientifique/{multiplicateur}")]
+        public ActionResult<int> ArrayMultiplication(int multiplicateur)
+        {
+            int[] numbers = { 1, 2, 34, 54 };
+            int somme = 0;
+            int result = 0;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                somme += numbers[i];
+            }
+
+            result = somme * multiplicateur;
+            return result;
+        }
+
+        // POST api/values/calcules/calculeScientifique
+        [HttpPost("calcules/calculeScientifique")]
+        public IActionResult ArrayMultiplication(PostMultiplicateurDTO request)
+        {
+            var response = new PostMultiplicateurDTO();
+            int[] numbers = { 1, 2, 34, 54 };
+            int somme =0;
+            for (int i = 0; i < numbers.Length; i++)
+			{
+                somme+=numbers[i];
+			}
+            response.result = request.multiplicateur * somme;
+            return Ok(response); 
+        }        
     }
 }
