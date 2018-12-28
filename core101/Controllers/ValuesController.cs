@@ -83,13 +83,13 @@ namespace core101.Controllers
         {
             var response = new PostMultiplicateurDTO();
             int[] numbers = { 1, 2, 34, 54 };
-            int somme =0;
+            int somme = 0;
             for (int i = 0; i < numbers.Length; i++)
-			{
-                somme+=numbers[i];
-			}
+            {
+                somme += numbers[i];
+            }
             response.result = request.multiplicateur * somme;
-            return Ok(response); 
-        }        
+            return Ok(response);
+        }
     }
 }
