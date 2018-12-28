@@ -8,6 +8,7 @@ namespace core101.Model.Dto
     public class PostMultiplicateurDTO
     {        
         public int multiplicateur { get; set; }
-        public int result { get; set; }
+
+        public int[] numbers { get; set; }
     }
 }

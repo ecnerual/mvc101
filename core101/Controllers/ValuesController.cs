@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using core101.Helpers;
 using core101.Model.Dto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -66,29 +67,23 @@ namespace core101.Controllers
         public ActionResult<int> ArrayMultiplication(int multiplicateur)
         {
             int[] numbers = { 1, 2, 34, 54 };
-            int somme = 0;
-            int result = 0;
-            for (int i = 0; i < numbers.Length; i++)
+            int sum = 0;
+
+            foreach (var n in numbers)
             {
-                somme += numbers[i];
+                sum += n;
             }
 
-            result = somme * multiplicateur;
-            return result;
+            return sum * multiplicateur;
         }
 
         // POST api/values/calcules/calculeScientifique
         [HttpPost("calcules/calculeScientifique")]
         public IActionResult ArrayMultiplication(PostMultiplicateurDTO request)
         {
-            var response = new PostMultiplicateurDTO();
-            int[] numbers = { 1, 2, 34, 54 };
-            int somme = 0;
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                somme += numbers[i];
-            }
-            response.result = request.multiplicateur * somme;
+            var response = new ResponseMultiplicateurDTO();
+            int sum = MathHelper.ArraySum(request.numbers);
+            response.result = request.multiplicateur * sum;
             return Ok(response);
         }
     }
